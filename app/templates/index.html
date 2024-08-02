@@ -1,0 +1,249 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Admission</title>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Navbar */
+        nav {
+            background-color: rgb(82, 136, 133); /* Dark blue-green */
+            height: 80px; /* Increase navbar height */
+            line-height: 80px; /* Center align text vertically */
+        }
+        nav .brand-logo {
+            margin-left: 20px; /* Adjust logo margin */
+            font-size: 1.5rem; /* Increase logo font size */
+        }
+        nav ul.right li {
+            padding: 0 15px; /* Adjust padding around navbar links */
+        }
+
+        /* Page Content */
+        .container {
+            margin-top: 20px; /* Top margin for all containers */
+        }
+        .card {
+            margin-bottom: 20px; /* Bottom margin for cards */
+            border-radius: 8px; /* Rounded corners for cards */
+            overflow: hidden; /* Ensure image corners are rounded */
+        }
+        .card-image img {
+            border-radius: 8px 8px 0 0; /* Rounded top corners for card images */
+        }
+        .card-content {
+            padding: 20px; /* Padding inside card content */
+        }
+        .card-title {
+            font-weight: 500; /* Medium font weight for card titles */
+            margin-bottom: 10px; /* Bottom margin for card titles */
+        }
+
+        /* Footer */
+        .page-footer {
+            background-color: rgb(82, 136, 133); /* Dark blue-green */
+            padding-top: 20px; /* Top padding inside footer */
+            color: white; /* Text color */
+        }
+        .page-footer ul li {
+            margin-bottom: 10px; /* Space between footer links */
+        }
+
+        /* Form */
+        .input-field label {
+            color: #526885; /* Label color */
+        }
+        .input-field input[type=text]:focus + label,
+        .input-field input[type=email]:focus + label,
+        .input-field input[type=tel]:focus + label,
+        .input-field textarea:focus + label {
+            color: #526885; /* Focus color for labels */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">BGMIT</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <div id="home" class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                <h1>Welcome to BGMIT</h1>
+                <p>Learn more about our programs and admissions process.</p>
+                <a class="waves-effect waves-light btn" href="{% url 'inquiry' %}">Admission Enquiry</a>
+                <a class="waves-effect waves-light btn" href="{% url 'display_students' %}">Book</a>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{% static 'img/College_3.jpeg' %}" alt="College Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="container">
+        <h2>About Us</h2>
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{% static 'img/College_7.jpg' %}" alt="About Image">
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <p>B.V.V.S has a strong emphasis on rural development coupled with philanthropic and social commitment. This network of institutions has created an excellent base both administratively and culturally for healthy integrated development of education and training for the social, economic, moral, and spiritual upliftment of society. A variety of formal programs leading to Degrees and Diplomas are offered by these educational institutions. The institutions have been highly acclaimed for providing state-of-the-art education backed by good physical infrastructure and qualified faculty. This has been achieved by integrating the expertise available with the constituent institutions of B.V.V.S.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Courses Section -->
+    <div id="courses" class="container">
+        <h2>Our Courses</h2>
+        
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Artificial Intelligence and Machine Learning</span>
+                        <p>Prof. Vinayak A. Telsang<br>
+                            Assistant Professor & HOD<br>
+                            B.E, M.Tech., (Ph.D)<br>
+                            v.telsang@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Civil Engineering</span>
+                        <p>Prof. Geeta Jirali<br>
+                            Assistant Professor & HOD<br>
+                            B.E, M.Tech.<br>
+                            geeta.jirali@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Computer Science and Engineering</span>
+                        <p>Prof. Manjunath Gabsavalagi<br>
+                            Assistant Professor & HOD<br>
+                            B.E, M.Tech.<br>
+                            manjunath.gibbs@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Electronics and Communication Engineering</span>
+                        <p>Prof. Jyoti Katagi<br>
+                            Assistant Professor & HOD<br>
+                            B.E, M.Tech., (Ph.D)<br>
+                            katagi.jyoti@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Mechanical Engineering</span>
+                        <p>Prof. Pandurang Paraddi<br>
+                            Assistant Professor & HOD<br>
+                            B.E, M.Tech.<br>
+                            panduparaddi2010@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="container">
+        <h2>Contact Us</h2>
+        <div class="row">
+            <form class="col s12" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="name" type="text"  name="name" class="validate">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="email" type="email" name="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="phone" type="tel" name="phone" class="validate">
+                        <label for="phone">Phone No.</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="message" name="message" class="materialize-textarea"></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                </button>
+                {%if success%}
+                {{success}}
+                {%endif%}
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">BGMIT Mudhol</h5>
+                    <p class="grey-text text-lighten-4">© 2024 Developed by CSE Team</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://twitter.com/yourhandle" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://instagram.com/youraccount" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://linkedin.com/company/yourcompany" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit(); // Initialize Materialize JS components
+        });
+    </script>
+</body>
+</html>

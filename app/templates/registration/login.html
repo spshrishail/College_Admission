@@ -1,0 +1,79 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <!-- Optional: Google Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        /* Custom styles for centering the form */
+        body {
+            display: flex;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-image: {%static 'img/College_3.jpeg'%};
+        }
+
+        .login-form {
+            width: 90%; /* Adjust the form width as needed */
+            max-width: 400px; /* Limit maximum width for larger screens */
+            padding: 20px;
+            background-color: #ffffff; /* White background */
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+        }
+
+        .login-form h4 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-form-button {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card login-form">
+                    <div class="card-content">
+                        <span class="card-title">Login</span>
+                        <form method='post'>
+                            {% csrf_token %}
+                            <div class="input-field">
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                            </div>
+                            <div class="input-field">
+                                {{ form.password.label_tag }}
+                                {{ form.password }}
+                            </div>
+                            <div class="login-form-button">
+                                <button class="btn waves-effect waves-light" type="submit">Login
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

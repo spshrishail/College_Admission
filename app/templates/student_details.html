@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <title>Add Student page</title>
+    
+    <style>
+        /* Custom CSS for bold and colored labels */
+        .custom-label {
+            font-weight: bold;
+            color: #1565c0; /* Adjust color as needed */
+        }
+
+        /* Table and general styling */
+        .dt {
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #bdbdbd; /* Light gray border */
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2; /* Light gray background for header */
+        }
+        .csv-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .csv-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        /* Footer styling */
+        footer.page-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgb(82, 136, 133); /* Same as navbar */
+            color: white; /* Text color */
+            padding: 10px 0; /* Added padding for space */
+            text-align: center; /* Center-align text */
+        }
+        footer.page-footer a {
+            color: white; /* Link color */
+        }
+        footer.page-footer a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body class="grey lighten-4"> <!-- Light gray background -->
+    <!-- Header -->
+    <nav>
+        <div class="nav-wrapper" style="background-color: rgb(82, 136, 133);">
+            <a href="#" class="brand-logo" style="margin-left: 10px;">BGMIT</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'index' %}">About</a></li>
+                <li><a href="{% url 'index' %}">Courses</a></li>
+                <li><a href="{% url 'index' %}">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a class="csv-button" href="{% url 'BookCSV' %}">Download CSV</a> <!-- Download CSV button -->
+        <u><h3 class="dt">Booked Student Details</h3></u> <!-- Underlined and centered heading -->
+       
+        <table class="striped"> <!-- Striped table for better readability -->
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>Name</th>
+                    <th>College</th>
+                    <th>Place</th>
+                    <th>Branch</th>
+                    <th>PUC Result</th>
+                    <th>CET Rank</th>
+                    <th>Category</th>
+                    <th>Contact</th>
+                    <th>Total Fee</th>
+                    <th>Paid Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.college }}</td>
+                    <td>{{ student.place }}</td>
+                    <td>{{ student.branch }}</td>
+                    <td>{{ student.puc_result }}</td>
+                    <td>{{ student.cet_rank }}</td>
+                    <td>{{ student.category }}</td>
+                    <td>{{ student.contact }}</td>
+                    <td>{{ student.total_fee }}</td>
+                    <td>{{ student.paid_fee }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">BGMIT Mudhol</h5>
+                    <p class="grey-text text-lighten-4">© 2024 Developed by CSE Team</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="grey-text text-lighten-3" href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://twitter.com/yourhandle" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://instagram.com/youraccount" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://linkedin.com/company/yourcompany" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

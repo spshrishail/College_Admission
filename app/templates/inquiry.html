@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Admission</title>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <style>
+        /* Custom CSS for navbar and general styling */
+        nav {
+            background-color: rgb(82, 136, 133); /* Dark blue-green */
+            height: 80px; /* Increase navbar height */
+            line-height: 80px; /* Center align text vertically */
+        }
+        nav .brand-logo {
+            margin-left: 20px; /* Adjust logo margin */
+            font-size: 1.5rem; /* Increase logo font size */
+        }
+        nav ul.right li {
+            padding: 0 15px; /* Adjust padding around navbar links */
+        }
+        .brand-logo {
+            margin-left: 50px; /* Corrected margin */
+        }
+        .page-footer {
+            background-color: rgb(82, 136, 133); /* Dark blue-green */
+            padding-top: 20px; /* Top padding inside footer */
+            color: white; /* Text color */
+        }
+        .page-footer ul li {
+            margin-bottom: 10px; /* Space between footer links */
+        }
+
+        /* Card and container styling */
+        .container {
+            margin-top: 20px; /* Top margin for all containers */
+        }
+        .card {
+            margin-bottom: 20px; /* Bottom margin for cards */
+            border-radius: 8px; /* Rounded corners for cards */
+            overflow: hidden; /* Ensure image corners are rounded */
+        }
+        .card-image img {
+            border-radius: 8px 8px 0 0; /* Rounded top corners for card images */
+        }
+        .card-title {
+            font-weight: 500; /* Medium font weight for card titles */
+            margin-bottom: 0; /* Adjust margin for card titles */
+        }
+        .card-content {
+            padding: 20px; /* Padding inside card content */
+        }
+
+        /* Button styling */
+        .waves-effect {
+            transition: background-color 0.3s; /* Smooth button hover effect */
+        }
+        .waves-effect:hover {
+            background-color: #37474F; /* Darken background on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">BGMIT</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{%url 'index'%}#home">Home</a></li>
+                <li><a href="{%url 'index'%}#about">About</a></li>
+                <li><a href="{%url 'index'%}#courses">Courses</a></li>
+                <li><a href="{%url 'index'%}#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <div id="home" class="container">
+        <h1>Welcome to Inquiry Page</h1>
+        <div class="row">
+            <div class="col s12 m6">
+                <p>Select any one option</p>
+                <h5>Book</h5>
+                <a class="waves-effect waves-light btn" href="{% url 'addstudent' %}">Add Booking Student</a>
+                <a class="waves-effect waves-light btn" href="{% url 'student_details' %}">Booked Student Details</a>
+                <h5>Inquiry</h5>
+                <a class="waves-effect waves-light btn" href="{% url 'inquirydata' %}">Add Inquiry Data</a>
+                <a class="waves-effect waves-light btn" href="{% url 'inquiry_student_details' %}">Inquiry Student Data</a>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{% static 'img/inquiry.jpg' %}" alt="College Image">
+                        <span class="card-title">Our Campus</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">BGMIT Mudhol</h5>
+                    <p class="grey-text text-lighten-4">© 2024 Developed by CSE Team</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="grey-text text-lighten-3" href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://twitter.com/yourhandle" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://instagram.com/youraccount" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://linkedin.com/company/yourcompany" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit(); // Initialize Materialize JS components
+        });
+    </script>
+</body>
+</html>

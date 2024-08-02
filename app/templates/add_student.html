@@ -1,0 +1,127 @@
+<!--Booking page-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student Page</title>
+    <style>
+        body {
+            background-image: url('path/to/your/image.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff; /* Title color */
+        }
+        .container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .container form label {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .container form label.required::after {
+            content: "*";
+            color: red;
+            margin-left: 4px;
+        }
+        .container form input[type='text'],
+        .container form input[type='number'],
+        .container form select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        .container form input[type='text']:focus,
+        .container form input[type='number']:focus,
+        .container form select:focus {
+            border-color: #007bff; /* Focus color */
+            outline: none;
+        }
+        .container form input[type='submit'] {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .container form input[type='submit']:hover {
+            background-color: #0056b3; /* Hover color */
+        }
+        .container a {
+            display: block;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .container a:hover {
+            text-decoration: underline;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 15px;
+            }
+            .container form input[type='text'],
+            .container form input[type='number'],
+            .container form select {
+                font-size: 14px;
+            }
+            .container form input[type='submit'] {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <a href="{% url 'inquiry' %}">Go back</a>
+        <form method="post" action="">
+            <h3>Add Booked Student Details</h3>
+            {% csrf_token %}
+            {% for field in form %}
+                <label for="{{ field.id_for_label }}" {% if field.field.required %}class="required"{% endif %}>
+                    {{ field.label }}
+                   
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                    <ul class="errors">
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
+</body>
+</html>

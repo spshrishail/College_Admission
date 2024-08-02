@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Students</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <style>
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Added margin bottom for spacing */
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        form {
+            display: inline-block; /* Ensures form elements stay inline */
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+        }
+
+        .actions button {
+            margin-right: 5px;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        .modal-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .modal-buttons {
+            text-align: center;
+        }
+
+        .modal-buttons button {
+            margin: 5px;
+        }
+
+        /* CSV button */
+        .csv-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right; /* Align to the right */
+        }
+
+        .csv-button:hover {
+            background-color: #45a049;
+        }
+         /* Navigation bar */
+         nav {
+            background-color: rgb(82, 136, 133); /* Dark blue-green */
+            height: 80px; /* Increase navbar height */
+            line-height: 80px; /* Center align text vertically */
+            padding: 0 20px; /* Add padding inside nav for content */
+            margin: 0; /* Remove margin */
+        }
+        
+        .brand-logo {
+            margin-left: 20px; /* Adjust logo margin */
+            font-size: 1.5rem; /* Increase logo font size */
+            color: white; /* Set logo color */
+            text-decoration: none; /* Remove underline */
+        }
+        
+        nav ul.right {
+            float: right; /* Align menu to the right */
+            margin: 0;
+            padding: 0;
+            list-style: none; /* Remove default list styles */
+        }
+        
+        nav ul.right li {
+            display: inline-block; /* Display menu items horizontally */
+            margin-left: 15px; /* Adjust space between menu items */
+        }
+        
+        nav ul.right li a {
+            color: white; /* Set menu item text color */
+            text-decoration: none; /* Remove underline */
+        }
+        
+        /* Page footer */
+        .page-footer {
+            background-color: rgb(82, 136, 133); /* Dark blue-green */
+            padding: 20px 0; /* Top and bottom padding inside footer */
+            text-align: center; /* Center align text */
+            color: white; /* Text color */
+            margin: 0; /* Remove margin */
+        }
+        
+        .page-footer ul {
+            list-style: none; /* Remove default list styles */
+            padding: 0;
+            margin: 0;
+        }
+        
+        .page-footer ul li {
+            margin-bottom: 10px; /* Space between footer links */
+        }
+        
+        .page-footer ul li a {
+            color: white; /* Set footer link text color */
+            text-decoration: none; /* Remove underline */
+        }
+        .nv{
+            margin: 0%;
+        }
+    </style>
+</head>
+<body>
+<div class="nv">
+
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">BGMIT</a>
+            <ul class="right">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <h2>Select Branch</h2>
+
+    <form id="student-form" method="post">
+        {% csrf_token %}
+        <select id="branch-select" name="branch">
+            <option value="">Select Branch</option>
+            {% for branch in branches %}
+                <option value="{{ branch }}">{{ branch }}</option>
+            {% endfor %}
+        </select>
+        <!-- Add more input fields for additional search criteria -->
+        <button type="submit" id="show-students-button">Show</button>
+    </form>
+</div>
+
+<hr>
+
+{% if students %}
+    <h2>Students</h2>
+
+    <table id="student-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>College</th>
+            <th>Place</th>
+            <th>Branch</th>
+            <th>PUC Result</th>
+            <th>CET Rank</th>
+            <th>Category</th>
+            <th>Contact</th>
+            <th>Total Fee</th>
+            <th>Paid Fee</th>
+            <th>Actions</th> <!-- New column for actions -->
+        </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.college }}</td>
+                <td>{{ student.place }}</td>
+                <td>{{ student.branch }}</td>
+                <td>{{ student.puc_result }}</td>
+                <td>{{ student.cet_rank }}</td>
+                <td>{{ student.category }}</td>
+                <td>{{ student.contact }}</td>
+                <td>{{ student.total_fee }}</td>
+                <td>{{ student.paid_fee }}</td>
+                <td class="actions">
+                    <button class="edit-button" data-student-id="{{ student.id }}">Edit</button>
+                    <button class="delete-button" data-student-id="{{ student.id }}">Delete</button>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="11">No students found for selected branch.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<!-- Modal for Edit Student -->
+<div id="edit-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Student</h2>
+        <form id="edit-form">
+            {% csrf_token %}
+            <input type="hidden" id="edit-student-id" name="student_id">
+            <input type="text" id="edit-name" name="name" class="modal-input" placeholder="Name">
+            <input type="text" id="edit-college" name="college" class="modal-input" placeholder="College">
+            <input type="text" id="edit-place" name="place" class="modal-input" placeholder="Place">
+            <select id="edit-branch" name="branch" class="modal-input">
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="AIML">AIML</option>
+                <option value="Civil">Civil</option>
+                <option value="Mech">Mech</option>
+                <option value="Mech/Civil">Mech/Civil</option>
+                <option value="Mech/AIML">Mech/AIML</option>
+                <option value="Mech/ECE">Mech/ECE</option>
+                <option value="Mech/CSE">Mech/CSE</option>
+                <option value="Civil/AIML">Civil/AIML</option>
+                <option value="Civil/ECE">Civil/ECE</option>
+                <option value="Civil/CSE">Civil/CSE</option>
+                <option value="AIML/ECE">AIML/ECE</option>
+                <option value="AIML/CSE">AIML/CSE</option>
+                <option value="ECE/CSE">ECE/CSE</option>
+                <!-- Add more options as needed -->
+            </select>
+            <input type="number" id="edit-puc-result" name="puc_result" class="modal-input" placeholder="PUC Result">
+            <input type="number" id="edit-cet-rank" name="cet_rank" class="modal-input" placeholder="CET Rank">
+            <input type="text" id="edit-category" name="category" class="modal-input" placeholder="Category">
+            <input type="number" id="edit-contact" name="contact" class="modal-input" placeholder="Contact">
+            <input type="number" id="edit-total-fee" name="total_fee" class="modal-input" placeholder="Total Fee">
+            <input type="number" id="edit-paid-fee" name="paid_fee" class="modal-input" placeholder="Paid Fee">
+            <div class="modal-buttons">
+                <button type="button" id="update-button">Update</button>
+                <button type="button" class="close">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- CSV Download Form -->
+<form  id="download-csv-form" method="post" action="{% url 'download_all_searched_students' %}" style="display: none;">
+    {% csrf_token %}
+    <input type="hidden" id="csv-branch" name="branch">
+</form>
+
+<button type="button" id="download-csv-button" class="csv-button">Download All Searched Students CSV</button>
+
+<script>
+    $(document).ready(function() {
+        // Modal handling
+        var modal = document.getElementById('edit-modal');
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Edit button click handler
+        $(document).on('click', '.edit-button', function() {
+            var studentId = $(this).data('student-id');
+            var row = $(this).closest('tr');
+            var name = row.find('td:eq(0)').text();
+            var college = row.find('td:eq(1)').text();
+            var place = row.find('td:eq(2)').text();
+            var branch = row.find('td:eq(3)').text();
+            var pucResult = row.find('td:eq(4)').text();
+            var cetRank = row.find('td:eq(5)').text();
+            var category = row.find('td:eq(6)').text();
+            var contact = row.find('td:eq(7)').text();
+            var totalFee = row.find('td:eq(8)').text();
+            var paidFee = row.find('td:eq(9)').text();
+
+            $('#edit-student-id').val(studentId);
+            $('#edit-name').val(name);
+            $('#edit-college').val(college);
+            $('#edit-place').val(place);
+            $('#edit-branch').val(branch);
+            $('#edit-puc-result').val(pucResult);
+            $('#edit-cet-rank').val(cetRank);
+            $('#edit-category').val(category);
+            $('#edit-contact').val(contact);
+            $('#edit-total-fee').val(totalFee);
+            $('#edit-paid-fee').val(paidFee);
+
+            modal.style.display = "block";
+        });
+
+        // Update button click handler
+        $('#update-button').click(function() {
+            var form = $('#edit-form');
+            var studentId = $('#edit-student-id').val();
+            var formData = form.serialize();
+
+            $.ajax({
+                url: '/update_student/' + studentId + '/',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Update the table row with new data
+                    var updatedRow = $('<tr>' +
+                        '<td>' + response.name + '</td>' +
+                        '<td>' + response.college + '</td>' +
+                        '<td>' + response.place + '</td>' +
+                        '<td>' + response.branch + '</td>' +
+                        '<td>' + response.puc_result + '</td>' +
+                        '<td>' + response.cet_rank + '</td>' +
+                        '<td>' + response.category + '</td>' +
+                        '<td>' + response.contact + '</td>' +
+                        '<td>' + response.total_fee + '</td>' +
+                        '<td>' + response.paid_fee + '</td>' +
+                        '<td class="actions">' +
+                        '<button class="edit-button" data-student-id="' + studentId + '">Edit</button> ' +
+                        '<button class="delete-button" data-student-id="' + studentId + '">Delete</button>' +
+                        '</td>' +
+                        '</tr>');
+
+                    $('tr[data-student-id="' + studentId + '"]').replaceWith(updatedRow);
+                    modal.style.display = "none";
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        
+      // Delete button click handler
+$(document).on('click', '.delete-button', function() {
+    var studentId = $(this).data('student-id');
+
+    if (confirm("Are you sure you want to delete this student?")) {
+        $.ajax({
+            url: '/delete_student/' + studentId + '/',
+            type: 'POST',
+            data: {
+                'student_id': studentId,
+                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function() {
+                // Remove the table row
+                $('tr[data-student-id="' + studentId + '"]').remove();
+            },
+            error: function(error) {
+                console.log(error);
+                // Handle error here if needed
+            }
+        });
+    }
+});
+
+
+        // Download CSV button click handler
+        $('#download-csv-button').click(function() {
+            var branch = $('#branch-select').val();
+            $('#csv-branch').val(branch);
+            $('#download-csv-form').submit();
+        });
+    });
+</script>
+
+</body>
+</html>
