@@ -26,57 +26,5 @@ This project is a College Admission and Inquiry System built using Django. The s
 ## Admin and User Credentials
 Username: bgmit
 Password: 12qw!@QW
-
-## Directory Structure
-
-This is the structure of the `spshrishail-College_Admission` project:
-## Directory Structure
-
-spshrishail-College_Admission/
-|
-├── README.md                    
-|
-├── db.sqlite3                  
-|
-├── manage.py                   
-|
-├── app/                        
-|   |
-|   ├── __init__.py            
-|   ├── admin.py               
-|   ├── apps.py                
-|   ├── forms.py               
-|   ├── models.py              
-|   ├── tests.py               
-|   ├── views.py               
-|   ├── __pycache__/           
-|   |
-|   ├── migrations/            
-|   |   ├── 0001_initial.py    
-|   |   ├── ... (other migrations)
-|   |   └── __pycache__/       
-|   |
-|   ├── static/                
-|   |   └── img/
-|   |       └── college        
-|   |
-|   └── templates/             
-|       ├── add_student.html
-|       ├── display_students.html
-|       ├── index.html
-|       ├── inquiry.html
-|       ├── inquiry_student_details.html
-|       ├── inquirydata.html
-|       ├── student_details.html
-|       ├── studentform.html
-|       └── registration/
-|           └── login.html
-|
-└── project/                    
-    ├── __init__.py            
-    ├── asgi.py                
-    ├── settings.py            
-    ├── urls.py                
-    ├── wsgi.py                
-    └── __pycache__/           
+      
 
